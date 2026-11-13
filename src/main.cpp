@@ -3,6 +3,7 @@
 
 #include <Windows.h>
 
+#include <cmath>
 #include <filesystem>
 #include <iomanip>
 #include <iostream>
@@ -27,7 +28,7 @@ std::filesystem::path executable_directory() {
     }
 }
 
-std::string command_line_expression(int argument_count, char* arguments[]) {
+std::string command_line_expression(int argument_count, const char* const arguments[]) {
     std::string expression;
     for (int index = 1; index < argument_count; ++index) {
         if (!expression.empty()) {
@@ -42,7 +43,7 @@ bool evaluate_and_print(const Calculator& calculator, const std::string& express
     try {
         double result = calculator.evaluate(expression);
         if (result == 0.0) {
-            result = 0.0;
+            result = std::abs(result);
         }
         std::cout << std::setprecision(15) << result << '\n';
         return true;

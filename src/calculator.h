@@ -10,10 +10,10 @@
 
 struct Operation {
     std::string name;
-    CalcPluginKind kind;
-    std::uint32_t arity;
-    int precedence;
-    CalcAssociativity associativity;
+    CalcPluginKind kind = CalcPluginKind::function;
+    std::uint32_t arity = 0;
+    int precedence = 0;
+    CalcAssociativity associativity = CalcAssociativity::none;
     std::function<double(const std::vector<double>&)> invoke;
 };
 
